@@ -47,7 +47,7 @@ public class TestSuite implements Test {
      * ...as the moon sets over the early morning Merlin, Oregon
      * mountains, our intrepid adventurers type...
      */
-    static public Test createTest(Class<?> theClass, String name) {
+    static public Test createTest(Class<?> theClass, String name) {//wxc 2015-9-10:16:28:08 ?????TestCase??? ??????????
         Constructor<?> constructor;
         try {
             constructor = getTestConstructor(theClass);
@@ -59,10 +59,10 @@ public class TestSuite implements Test {
             if (constructor.getParameterTypes().length == 0) {
                 test = constructor.newInstance(new Object[0]);
                 if (test instanceof TestCase) {
-                    ((TestCase) test).setName(name);
+                    ((TestCase) test).setName(name); //wxc pro 2015-9-10:16:29:29 ??setName?????????????????????????????????????????????? ????????? ?????????????
                 }
             } else {
-                test = constructor.newInstance(new Object[]{name});
+                test = constructor.newInstance(new Object[]{name});//wxc 2015-9-10:16:33:15 ?????????????????testXXX??? ?TestCase???fName?????the name of the test case?? ?????? TestCase???????????????Class????
             }
         } catch (InstantiationException e) {
             return (warning("Cannot instantiate test case: " + name + " (" + exceptionToString(e) + ")"));
@@ -94,7 +94,7 @@ public class TestSuite implements Test {
         return new TestCase("warning") {
             @Override
             protected void runTest() {
-                fail(message);
+                fail(message);//wxc 2015-9-10:16:23:33 ??? ??????????? ????????????
             }
         };
     }
@@ -132,7 +132,7 @@ public class TestSuite implements Test {
     private void addTestsFromTestCase(final Class<?> theClass) {
         fName = theClass.getName();
         try {
-            getTestConstructor(theClass); // Avoid generating multiple error messages
+            getTestConstructor(theClass); // Av//wxc 2015-9-10:16:18:10 ?????????????? ??????????oid generating multiple error messages
         } catch (NoSuchMethodException e) {
             addTest(warning("Class " + theClass.getName() + " has no public constructor TestCase(String name) or TestCase()"));
             return;
@@ -145,7 +145,7 @@ public class TestSuite implements Test {
 
         Class<?> superClass = theClass;
         List<String> names = new ArrayList<String>();
-        while (Test.class.isAssignableFrom(superClass)) {
+        while (Test.class.isAssignableFrom(superClass)) {//wxc 2015-9-10:16:26:00 ????????? ????TestCase???
             for (Method each : MethodSorter.getDeclaredMethods(superClass)) {
                 addTestMethod(each, names, theClass);
             }

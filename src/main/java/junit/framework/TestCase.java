@@ -137,7 +137,7 @@ public abstract class TestCase extends Assert implements Test {
      */
     public void runBare() throws Throwable {
         Throwable exception = null;
-        setUp();
+        setUp();//wxc 2015-9-10:17:30:04 ??setUp?????? ????????????
         try {
             runTest();
         } catch (Throwable running) {
@@ -165,7 +165,7 @@ public abstract class TestCase extends Assert implements Test {
             // methods. getDeclaredMethods returns all
             // methods of this class but excludes the
             // inherited ones.
-            runMethod = getClass().getMethod(fName, (Class[]) null);
+            runMethod = getClass().getMethod(fName, (Class[]) null); //wxc 2015-9-10:17:31:39 ???????????????
         } catch (NoSuchMethodException e) {
             fail("Method \"" + fName + "\" not found");
         }

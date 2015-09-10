@@ -116,13 +116,13 @@ public class TestResult {
      * Runs a TestCase.
      */
     protected void run(final TestCase test) {
-        startTest(test);
+        startTest(test);//wxc pro 2015-9-10:17:01:41 ????????setUp????????
         Protectable p = new Protectable() {
             public void protect() throws Throwable {
                 test.runBare();
             }
         };
-        runProtected(test, p);
+        runProtected(test, p); //wxc 2015-9-10:17:06:01 ??????????????
 
         endTest(test);
     }

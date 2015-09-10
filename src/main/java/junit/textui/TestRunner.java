@@ -126,7 +126,7 @@ public class TestRunner extends BaseTestRunner {
         if (!wait) return;
         fPrinter.printWaitPrompt();
         try {
-            System.in.read();
+            System.in.read();//wxc 2015-9-10:16:42:14 ??????? ?????????
         } catch (Exception e) {
         }
     }
